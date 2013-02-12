@@ -3,9 +3,16 @@
 
 site 'http://community.opscode.com/api/v1'
 
+cookbook 'apt'
 cookbook 'build-essential'
-cookbook 'ruby_build', :git => 'git://github.com/fnichol/chef-ruby_build.git'
-cookbook 'rbenv', :git => 'https://github.com/fnichol/chef-rbenv'
+cookbook 'git'
+cookbook 'ruby_build'
+cookbook 'rbenv', :git => 'git://github.com/fnichol/chef-rbenv.git'
 cookbook 'unicorn'
 cookbook 'nginx'
+
+cookbook 'database', '1.3.2'
 cookbook 'postgresql'
+cookbook 'initdb', :git => 'git://github.com/xforty/chef-initdb.git'
+
+cookbook 'rails-lastmile', :git  => 'git://github.com/DanThiffault/rails-lastmile.git'

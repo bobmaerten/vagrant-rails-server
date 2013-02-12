@@ -7,7 +7,7 @@ Vagrant::Config.run do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu-server"
+  config.vm.box = "precise64"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
@@ -29,7 +29,7 @@ Vagrant::Config.run do |config|
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
-  config.vm.forward_port 3000, 3000
+  config.vm.forward_port 80, 8080
 
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
@@ -45,11 +45,16 @@ Vagrant::Config.run do |config|
     # chef.roles_path = "./roles"
     # chef.add_role "web"
     # chef.data_bags_path = "../my-recipes/data_bags"
+    chef.add_recipe "apt"
+    chef.add_recipe "build-essential"
+    chef.add_recipe "git"
     chef.add_recipe "ruby_build"
     chef.add_recipe "rbenv::system"
-    chef.add_recipe "nginx"
-    chef.add_recipe "unicorn"
+    chef.add_recipe "rbenv::vagrant"
     chef.add_recipe "postgresql::server"
+    chef.add_recipe "database"
+    chef.add_recipe "initdb"
+    chef.add_recipe "rails-lastmile"
 
     # You may also specify custom JSON attributes:
     chef.json = {
@@ -66,6 +71,28 @@ Vagrant::Config.run do |config|
       :postgresql => {
         :password => { :postgres => "postgres" }
       },
+      :initdb => {
+        :postgresql => {
+          :connection => {
+            :host => 'localhost',
+            :username => 'postgres',
+            :password => 'postgres'
+          },
+          :databases => {
+            "staging" => {
+              :action => :create
+            }
+          },
+          :users => {
+            'dbuser' => {
+              :action => :create,
+              :database_name => 'staging',
+              :host => 'localhost',
+              :password => 'password'
+            }
+          }
+        }
+      }
     }
   end
 end
