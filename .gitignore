@@ -1,4 +1,5 @@
 /tmp
 /cookbooks
 /.vagrant
-todo
+/rails_app/*
+!/rails_app/.placeholder

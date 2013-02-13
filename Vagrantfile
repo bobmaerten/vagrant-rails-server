@@ -78,7 +78,7 @@ Vagrant::Config.run do |config|
         }
       },
       'rails-lastmile' => {
-         'app_dir' => '/vagrant/todo',
+         'app_dir' => '/vagrant/rails_app/demo',
          'ruby_version' => '1.9.3-p385'
       }
     }
