@@ -36,9 +36,9 @@ SITE
     yum (2.1.0)
 
 GIT
-  remote: git://github.com/bobmaerten/rails-lastmile.git
+  remote: git://github.com/DanThiffault/rails-lastmile.git
   ref: master
-  sha: 9320f6a6093b834e30c1f7b47e18d89602c1e4e8
+  sha: 9d84a4ba91aa510bdfa31aa23f8b546a33815f47
   specs:
     rails-lastmile (0.1.0)
 
