@@ -45,12 +45,6 @@ Vagrant::Config.run do |config|
     # chef.roles_path = "./roles"
     # chef.add_role "web"
     # chef.data_bags_path = "../my-recipes/data_bags"
-    chef.add_recipe "apt"
-    chef.add_recipe "build-essential"
-    chef.add_recipe "git"
-    chef.add_recipe "ruby_build"
-    chef.add_recipe "rbenv::system"
-    chef.add_recipe "rbenv::vagrant"
     chef.add_recipe "postgresql::server"
     chef.add_recipe "database::postgresql"
     chef.add_recipe "initdb"
@@ -58,16 +52,6 @@ Vagrant::Config.run do |config|
 
     # You may also specify custom JSON attributes:
     chef.json = {
-      'rbenv' => {
-        'global' => '1.9.3-p385',
-        'rubies' => [ '1.9.3-p385' ],
-        'gems'   => {
-          '1.9.3-p385' => [
-          { 'name'   => 'bundler' },
-          { 'name'   => 'railties' }
-          ]
-        }
-      },
       'postgresql' => {
         'password' => { 'postgres' => 'postgres' }
       },
@@ -94,7 +78,8 @@ Vagrant::Config.run do |config|
         }
       },
       'rails-lastmile' => {
-         'app_dir' => '/vagrant/todo'
+         'app_dir' => '/vagrant/todo',
+         'ruby_version' => '1.9.3-p385'
       }
     }
   end
