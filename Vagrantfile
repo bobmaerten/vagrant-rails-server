@@ -52,7 +52,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "rbenv::system"
     chef.add_recipe "rbenv::vagrant"
     chef.add_recipe "postgresql::server"
-    chef.add_recipe "database"
+    chef.add_recipe "database::postgresql"
     chef.add_recipe "initdb"
     chef.add_recipe "rails-lastmile"
 
@@ -68,30 +68,33 @@ Vagrant::Config.run do |config|
           ]
         }
       },
-      :postgresql => {
-        :password => { :postgres => "postgres" }
+      'postgresql' => {
+        'password' => { 'postgres' => 'postgres' }
       },
-      :initdb => {
-        :postgresql => {
-          :connection => {
-            :host => 'localhost',
-            :username => 'postgres',
-            :password => 'postgres'
+      'initdb' => {
+        'postgresql' => {
+          'connection' => {
+            'host' => 'localhost',
+            'username' => 'postgres',
+            'password' => 'postgres'
           },
-          :databases => {
-            "staging" => {
-              :action => :create
+          'databases' => {
+            'rails' => {
+              'action' => 'create'
             }
           },
-          :users => {
+          'users' => {
             'dbuser' => {
-              :action => :create,
-              :database_name => 'staging',
-              :host => 'localhost',
-              :password => 'password'
+              'action' => 'create',
+              'database_name' => 'rails',
+              'host' => 'localhost',
+              'password' => 'password'
             }
           }
         }
+      },
+      'rails-lastmile' => {
+         'app_dir' => '/vagrant/todo'
       }
     }
   end
