@@ -46,6 +46,7 @@ Vagrant::Config.run do |config|
     # chef.add_role "web"
     # chef.data_bags_path = "../my-recipes/data_bags"
     chef.add_recipe "postgresql::server"
+    chef.add_recipe "mysql"
     chef.add_recipe "database::postgresql"
     chef.add_recipe "initdb"
     chef.add_recipe "rails-lastmile"
@@ -55,6 +56,7 @@ Vagrant::Config.run do |config|
       'postgresql' => {
         'password' => { 'postgres' => 'postgres' }
       },
+      'mysql' => { 'server_root_password' => '' },
       'initdb' => {
         'postgresql' => {
           'connection' => {
