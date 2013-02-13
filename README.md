@@ -20,8 +20,8 @@ to test right upon VM start through a vagrant port redirection.
 
 1. Fetch the necessary provisionning recipes and start the VM:
 
-    $ librarian-chef install
-    $ vagrant up
+        $ librarian-chef install
+        $ vagrant up
 
 2. Go take one or two coffees
 
