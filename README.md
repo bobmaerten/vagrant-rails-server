@@ -27,3 +27,7 @@ to test right upon VM start through a vagrant port redirection.
 
 3. Open your host browser to http://localhost:8080
 
+## DEMO
+
+I recorded the boot and provisioning process of this VM on
+[Shelr.tv](http://shelr.tv/records/511bf85e966080252e000027).
